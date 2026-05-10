@@ -47,6 +47,8 @@ frontend/
         RuleForm.jsx
         RuleList.jsx
         TextProcessor.jsx
+    services/
+        api.js
     App.css
     App.jsx
     main.jsx
@@ -78,5 +80,6 @@ http://localhost:5173
 ## API Endpoints
 
 GET /rules → fetch all rules  
-POST /rules → create rule  
+POST /rules → create a new rule  
+DELETE /rules/:id → delete a rule  
 POST /process → process text using rules  

@@ -1,12 +1,17 @@
-import axios from "axios";
 import { useState, useEffect } from "react";
-
 import "./App.css";
 
 import RuleForm from "./components/RuleForm";
 import RuleList from "./components/RuleList";
 import TextProcessor from "./components/TextProcessor";
 import OutputBox from "./components/OutputBox";
+
+import {
+  createRule,
+  fetchRules,
+  deleteRule,
+  processText,
+} from "./services/api";
 
 function App() {
   const [keyword, setKeyword] = useState("");
@@ -20,67 +25,50 @@ function App() {
   const [text, setText] = useState("");
   const [result, setResult] = useState([]);
 
-  // CREATE RULE
-  const createRule = async () => {
+  const handleCreateRule = async () => {
     try {
-      await axios.post(
-        "http://localhost:5000/rules",
-        {
-          keyword,
-          matchType,
-          actionType,
-          value,
-        }
-      );
+      await createRule({
+        keyword,
+        matchType,
+        actionType,
+        value,
+      });
 
-      fetchRules();
+      loadRules();
     } catch (error) {
       console.log(error);
     }
   };
 
-  // FETCH RULES
-  const fetchRules = async () => {
+  const loadRules = async () => {
     try {
-      const response = await axios.get(
-        "http://localhost:5000/rules"
-      );
-
-      setRules(response.data);
+      const data = await fetchRules();
+      setRules(data);
     } catch (error) {
       console.log(error);
     }
   };
-  //Delete rules
-  const deleteRule = async (id) => {
-  try {
-    await axios.delete(
-      `http://localhost:5000/rules/${id}`
-    );
 
-    fetchRules();
-  } catch (error) {
-    console.log(error);
-  }
-};
-  // PROCESS TEXT
-  const processText = async () => {
+  const handleDeleteRule = async (id) => {
     try {
-      const response = await axios.post(
-        "http://localhost:5000/process",
-        {
-          text,
-        }
-      );
+      await deleteRule(id);
+      loadRules();
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-      setResult(response.data);
+  const handleProcessText = async () => {
+    try {
+      const data = await processText(text);
+      setResult(data);
     } catch (error) {
       console.log(error);
     }
   };
 
   useEffect(() => {
-    fetchRules();
+    loadRules();
   }, []);
 
   return (
@@ -97,12 +85,12 @@ function App() {
           setActionType={setActionType}
           value={value}
           setValue={setValue}
-          createRule={createRule}
+          createRule={handleCreateRule}
         />
 
         <RuleList
           rules={rules}
-          deleteRule={deleteRule}
+          deleteRule={handleDeleteRule}
         />
       </div>
 
@@ -112,7 +100,7 @@ function App() {
         <TextProcessor
           text={text}
           setText={setText}
-          processText={processText}
+          processText={handleProcessText}
         />
 
         <h2>Output</h2>
