@@ -31,15 +31,25 @@ Backend:
 
 backend/
   controllers/
+    process.controller.js
+    rules.controller.js
   routes/
+    process.routes.js
+    rules.routes.js
   database.js
   server.js
 
 frontend/
   src/
     components/
+        OutputBox.jsx
+        RuleCard.jsx
+        RuleForm.jsx
+        RuleList.jsx
+        TextProcessor.jsx
+    App.css
     App.jsx
-
+    main.jsx
 ## How to Run
 
 ### 1. Clone the repository
@@ -51,7 +61,7 @@ cd rule-based-content-filter
 
 cd backend
 npm install
-node server.js
+npm run dev
 
 Backend runs on:
 http://localhost:5000
@@ -60,19 +70,13 @@ http://localhost:5000
 
 cd frontend
 npm install
-npm start
+npm run dev
 
 Frontend runs on:
-http://localhost:3000
+http://localhost:5173
 
 ## API Endpoints
 
 GET /rules → fetch all rules  
 POST /rules → create rule  
 POST /process → process text using rules  
-
-## Notes
-
-- Rules are stored in SQLite database
-- Backend logic is separated into routes and controllers
-- Frontend handles UI and rendering only
