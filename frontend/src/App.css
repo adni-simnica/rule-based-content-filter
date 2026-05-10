@@ -1,0 +1,304 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+  overflow-x: hidden;
+  background: #f3f7fb;
+}
+
+body {
+  font-family: Inter, Arial, sans-serif;
+  color: #111827;
+}
+
+/* MAIN LAYOUT */
+
+.container {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: minmax(0, 1.8fr) minmax(360px, 1fr);
+  gap: 24px;
+  padding: 18px 48px;
+  background: #f3f7fb;
+}
+
+/* PANELS */
+
+.left,
+.right {
+  background: #ffffff;
+  border-radius: 12px;
+  min-width: 0;
+}
+
+.left {
+  overflow-x: auto;
+}
+
+/* TITLES */
+
+h1 {
+  margin: 0;
+  padding: 24px;
+  text-align: center;
+  font-size: 30px;
+  font-weight: 700;
+  color: #111827;
+  border-bottom: 1px solid #e5eaf0;
+  background: #ffffff;
+}
+
+.right h2 {
+  text-align: center;
+  font-size: 24px;
+  font-weight: 700;
+  color: #111827;
+  padding: 22px 0 14px;
+  margin: 0;
+}
+
+/* FORM */
+
+.form {
+  padding: 20px 24px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+/* INPUTS */
+
+input,
+select,
+textarea {
+  width: 100%;
+  border: 1px solid #d8e0ea;
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-size: 15px;
+  outline: none;
+  background: #ffffff;
+  color: #111827;
+  transition: 0.2s;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #2f6bd2;
+  box-shadow: 0 0 0 3px rgba(47, 107, 210, 0.12);
+}
+
+textarea {
+  width: calc(100% - 48px);
+  margin: 24px;
+  min-height: 240px;
+  resize: vertical;
+  line-height: 1.7;
+  font-size: 16px;
+}
+
+/* PLACEHOLDER */
+
+input::placeholder,
+textarea::placeholder {
+  color: #9ca3af;
+}
+
+/* BUTTONS */
+
+button {
+  border: none;
+  border-radius: 8px;
+  background: #2f6bd2;
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 14px 22px;
+  cursor: pointer;
+  transition: 0.2s;
+  box-shadow: 0 4px 10px rgba(47, 107, 210, 0.25);
+}
+
+button:hover {
+  background: #2459b3;
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+/* CREATE RULE BUTTON */
+
+.form button {
+  grid-column: span 2;
+  width: 240px;
+  justify-self: center;
+}
+
+/* PROCESS BUTTON */
+
+.right button {
+  display: block;
+  width: 260px;
+  margin: 0 auto;
+}
+
+/* RULE TITLE */
+
+.left h2 {
+  margin: 0;
+  padding: 16px 24px;
+  background: #f8fafc;
+  border-top: 1px solid #e5eaf0;
+  border-bottom: 1px solid #e5eaf0;
+  font-size: 15px;
+  font-weight: 700;
+  color: #4b5563;
+}
+
+/* RULE CARD */
+
+.ruleCard {
+  display: grid;
+
+  grid-template-columns:
+    minmax(120px, 1.2fr)
+    minmax(120px, 1fr)
+    minmax(120px, 1fr)
+    minmax(100px, 1fr)
+    auto;
+
+  align-items: center;
+  gap: 12px;
+
+  min-height: 70px;
+  padding: 0 20px;
+
+  border-bottom: 1px solid #edf2f7;
+
+  width: 100%;
+  overflow: hidden;
+}
+
+.ruleCard p {
+  margin: 0;
+  font-size: 15px;
+  color: #111827;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ruleCard strong {
+  font-weight: 700;
+}
+
+.ruleCard button {
+  justify-self: end;
+}
+
+/* DELETE BUTTON */
+
+.button-small {
+  padding: 6px 10px !important;
+  font-size: 13px;
+  box-shadow: none;
+  width: auto;
+}
+
+.button-danger {
+  background: #ef4444;
+}
+
+.button-danger:hover {
+  background: #dc2626;
+}
+
+/* OUTPUT */
+
+.outputBox {
+  margin: 0 24px 28px;
+  min-height: 280px;
+  border: 1px solid #dfe6ee;
+  border-radius: 8px;
+  background: #ffffff;
+  padding: 20px;
+  line-height: 1.9;
+  font-size: 18px;
+}
+
+/* HIGHLIGHT */
+
+.highlight {
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 700;
+  color: black;
+}
+
+/* TOOLTIP */
+
+.tooltip {
+  font-weight: 700;
+  color: #7c3aed;
+}
+
+.tooltip small {
+  background: #ffe08a;
+  color: #5b4300;
+  padding: 3px 8px;
+  border-radius: 5px;
+  margin-left: 4px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* TABLET */
+
+@media (max-width: 1100px) {
+  .container {
+    grid-template-columns: 1fr;
+    padding: 18px;
+  }
+}
+
+/* MOBILE */
+
+@media (max-width: 650px) {
+  .form {
+    grid-template-columns: 1fr;
+  }
+
+  .form button {
+    grid-column: span 1;
+    width: 100%;
+  }
+
+  textarea {
+    width: calc(100% - 32px);
+    margin: 16px;
+  }
+
+  .ruleCard {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding: 16px 20px;
+  }
+
+  .ruleCard p {
+    white-space: normal;
+  }
+
+  .ruleCard button {
+    justify-self: start;
+  }
+}
